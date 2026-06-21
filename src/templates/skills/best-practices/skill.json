@@ -1,0 +1,6 @@
+{
+  "name": "best-practices",
+  "title": "General Software Best Practices",
+  "category": "best-practices",
+  "content": "# Skill: General Software Best Practices\n\n## 1. SOLID Principles\n- **Single Responsibility (SRP)**: A class/module should have only one reason to change.\n- **Open/Closed (OCP)**: Software entities should be open for extension but closed for modification.\n- **Liskov Substitution (LSP)**: Subtypes must be substitutable for their base types without altering correctness.\n- **Interface Segregation (ISP)**: Clients should not be forced to depend on interfaces they do not use.\n- **Dependency Inversion (DIP)**: Depend on abstractions, not on concrete implementations.\n\n## 2. KISS & YAGNI\n- **KISS**: Keep it simple, stupid. Avoid over-engineering and complex inheritance structures.\n- **YAGNI**: You aren't gonna need it. Do not write code or features for potential future needs that are not currently required.\n\n## 3. Error Handling\n- Throw early, catch late: Validate parameters and inputs at boundary points and raise exceptions immediately. Let caller layers handle errors or log them at the application boundary.\n- Avoid silent failures: Never swallow exceptions with empty catch blocks.\n"
+}

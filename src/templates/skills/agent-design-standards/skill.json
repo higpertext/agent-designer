@@ -1,0 +1,6 @@
+{
+  "name": "agent-design-standards",
+  "title": "Agent Design Standards",
+  "category": "agents",
+  "content": "# Skill: Agent Design Standards\n\n## 1. Single Responsibility per Agent\n- Each agent must have one clearly defined domain of expertise.\n- Never create a 'god agent' that handles unrelated concerns. Split by bounded context.\n\n## 2. Capability Contracts\n- Every capability must define a Technical Contract: input parameters, expected output format, forbidden patterns, and required files generated.\n- Contracts are validated programmatically after every execution — never rely on agent self-reporting.\n\n## 3. Tool Minimalism\n- Grant each agent only the tools it strictly needs (principle of least privilege).\n- Avoid giving bash/edit permissions to review-only agents.\n\n## 4. Governance by Profile\n- Use profiles to scope capabilities per agent. An agent never accesses capabilities outside its profile.\n- governance_access: true only for agents that must enforce compliance rules.\n\n## 5. Subagent Delegation\n- Delegate specialized subtasks to focused subagents rather than expanding a primary agent's scope.\n- Subagents operate in read-only mode by default (edit: deny, bash: deny).\n"
+}
