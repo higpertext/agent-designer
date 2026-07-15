@@ -1,0 +1,29 @@
+{
+    "schema_version": "5.0.0",
+    "project_name": "agent-designer",
+    "initialized_at": "2026-06-30T08:15:22.784790",
+    "last_updated": "2026-06-30T08:15:22.784804",
+    "assistants": [
+        "agent"
+    ],
+    "assistant": "agent",
+    "active_profiles": [
+        "agent_designer"
+    ],
+    "active_profile": "agent_designer",
+    "system_environment": {
+        "os": "linux",
+        "python_executable": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python",
+        "has_powershell": false,
+        "project_root": "/home/aomerge/Documentos/Proyects/agents/agent-designer"
+    },
+    "variables": {
+        "default_branch": "main",
+        "repository_id": "agent-designer",
+        "repo_id": "agent-designer",
+        "organization_url": null,
+        "guidelines_source": null
+    },
+    "wikis": {},
+    "model_config": {}
+}

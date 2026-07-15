@@ -1,0 +1,25 @@
+{
+  "rules": [
+    {
+      "pattern": "\\bgit\\s+commit\\b",
+      "severity": "block",
+      "capability": "git.committer",
+      "reason": "Los commits directos omiten el flujo de gobernanza: conventional commits, stage selectivo, validación de cobertura y registro de telemetría. Usa la capacidad git.committer que aplica todas estas reglas automáticamente.",
+      "example": "htx task git.committer --message \"feat(scope): description\""
+    },
+    {
+      "pattern": "\\bpip\\s+install\\b|\\bpip3\\s+install\\b",
+      "severity": "block",
+      "capability": "",
+      "reason": "Las instalaciones de paquetes deben hacerse en el entorno controlado .venv. Usa '.venv/bin/pip install <paquete>' o gestiona dependencias desde pyproject.toml.",
+      "example": ".venv/bin/pip install <paquete>"
+    },
+    {
+      "pattern": "\\bpython\\s+(?!htx\\.py)\\S+\\.py\\b|\\bpython3\\s+(?!htx\\.py)\\S+\\.py\\b",
+      "severity": "context",
+      "capability": "common.higpertext-tester",
+      "reason": "Ejecutar scripts Python directamente evita el runtime del motor. Usa 'htx task' para lanzar capacidades o 'htx workflow run' para pipelines.",
+      "example": "htx task common.higpertext-tester --test <módulo>"
+    }
+  ]
+}
