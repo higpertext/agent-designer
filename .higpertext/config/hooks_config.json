@@ -50,7 +50,7 @@
       "enabled": true,
       "assistants": [],
       "profiles": [],
-      "capability_id": "security.vuln-resolver"
+      "capability_id": "security.secret-scanner"
     },
     {
       "id": "hook_security_guard_post",
@@ -62,7 +62,7 @@
       "enabled": true,
       "assistants": [],
       "profiles": [],
-      "capability_id": "security.vuln-resolver"
+      "capability_id": "security.secret-scanner"
     },
     {
       "id": "hook_post_observer",
@@ -136,7 +136,7 @@
       "priority": 0,
       "description": "Inyecta estado de sesión higpertext y contexto de skills activas en cada prompt.",
       "_layer": "global",
-      "_source": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/src/config/hooks/global/session_prompt.json"
+      "_source": "/home/aomerge/Documentos/Proyects/higpertext-cli/src/config/hooks/global/session_prompt.json"
     }
   ]
 }

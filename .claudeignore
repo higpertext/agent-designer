@@ -1,0 +1,9 @@
+.git/
+.venv/
+node_modules/
+.higpertext/
+.memory/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log

@@ -6,7 +6,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_bash_guard.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_bash_guard.py",
                         "timeout": 10,
                         "statusMessage": "Evalúa en cadena todas las reglas Bash: bloques duros, grep/"
                     }
@@ -17,7 +17,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_read_guard.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_read_guard.py",
                         "timeout": 5,
                         "statusMessage": "Bloquea lecturas completas de archivos grandes y recomienda "
                     }
@@ -28,7 +28,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_security_guard.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_security_guard.py",
                         "timeout": 5,
                         "statusMessage": "Bloquea comandos y rutas sensibles según security_guardrails"
                     }
@@ -41,13 +41,13 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_security_guard.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_security_guard.py",
                         "timeout": 5,
                         "statusMessage": "Enmascara secretos detectados en outputs de herramientas."
                     },
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_post_observer.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_post_observer.py",
                         "timeout": 5,
                         "statusMessage": "Registra telemetría de tokens y actividad tras cada tool cal"
                     }
@@ -60,13 +60,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_session_prompt.py",
-                        "timeout": 10,
-                        "statusMessage": "Inyecta estado de sesión higpertext y contexto de skills act"
-                    },
-                    {
-                        "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_session_prompt.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_session_prompt.py",
                         "timeout": 10,
                         "statusMessage": "Inyecta estado de sesión higpertext y contexto de skills act"
                     }
@@ -79,7 +73,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_session_stop.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_session_stop.py",
                         "timeout": 10,
                         "statusMessage": "Al cerrar el turno, verifica commits pendientes y recuerda e"
                     }
@@ -92,7 +86,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "/home/aomerge/Documentos/Proyects/agents/LLM-agent/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_context_manager.py",
+                        "command": "/home/aomerge/Documentos/Proyects/higpertext-cli/.venv/bin/python /home/aomerge/Documentos/Proyects/agents/agent-designer/.claude/hooks/hook_context_manager.py",
                         "timeout": 5,
                         "statusMessage": "Preserva estado higpertext crítico (sesión, skills, perfil) "
                     }

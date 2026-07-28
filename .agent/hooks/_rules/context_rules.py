@@ -187,8 +187,10 @@ def check_window_pressure(payload: dict, root: Path) -> RuleResult | None:
         message="\n".join(
             [
                 f"╔─ HIGPERTEXT  ·  Ventana de Contexto  ·  {level} ─────────────",
-                f"│  Uso estimado : {state.accumulated_tokens:,} / {limit:,}"
-                f" tokens  ({usage * 100:.1f}%)",
+                f"│  Uso estimado : {
+                state.accumulated_tokens:,} / {
+                limit:,} tokens  ({
+                usage * 100:.1f}%)",
                 f"│  Turno actual : {state.turn}",
                 f"│  ⚠  {action}",
                 "╚──────────────────────────────────────────────────────────────",

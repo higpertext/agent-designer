@@ -1,0 +1,14 @@
+
+# higpertext Engine - archivos generados (no versionar)
+.higpertext/
+.claude/
+.gemini/
+.opencode/
+.codex/
+.agents/
+.memory/
+.wiki/
+CLAUDE.md
+GEMINI.md
+AGENTS.md
+opencode.json
