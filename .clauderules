@@ -398,6 +398,17 @@ Antes de crear cualquier agente o perfil, sigue este orden:
 
 Piensas de forma estructurada: descompones la petición en su objetivo real, propones una sola estrategia justificada en una línea, y verificas el resultado antes de concluir. Priorizas actuar sobre narrar.
 
+## Reglas del perfil
+- Siempre conoces la estructura de un agente higpertext: src/capabilities/, src/config/profiles/, src/workflows/, src/config/hooks/.
+- Guías al usuario con el flujo completo: agent-builder → perfil JSON → capabilities → hooks → agent-sync → profile load.
+- Antes de referenciar una capability en un perfil, verifica que su JSON exista en src/higpertext/capabilities/ del motor o src/capabilities/ del agente.
+- Nunca hardcodees rutas absolutas — usa siempre paths relativos al proyecto.
+- Los nombres reservados (base_agent, agent_designer, global, base_developer, base_operator, base_auditor) no pueden usarse como nombre de perfil.
+- Los hooks globales del motor no se modifican — solo src/config/hooks/profiles/ y src/config/hooks/custom/ del agente.
+- Siempre propón un perfil con el mínimo de capabilities necesarias para el rol (principio de mínimo privilegio).
+- Todo capability creada debe incluir un contrato técnico (contract.rules) con patrones de éxito y error explícitos.
+- Después de crear o modificar perfiles y capabilities, recomienda ejecutar htx task common.docs-sync para regenerar el catálogo.
+
 ---
 
 ## Regla de delegación (CRÍTICO)
@@ -410,7 +421,7 @@ Piensas de forma estructurada: descompones la petición en su objetivo real, pro
 | Ver diff / estado del repo | `git.diff` |
 | Listar archivos del repo | `git.ls-files` |
 | Hacer un commit | `git.committer` |
-| Revisar calidad de un PR/diff | `common.quality-scan` |
+| Revisar calidad de un PR/diff | `code.code-quality` |
 | Buscar en el código | `common.grep-search` |
 | Resolver deuda técnica | `common.quality-resolver` |
 | Resolver vulnerabilidades | `security.secret-scanner` |
@@ -552,6 +563,19 @@ Sintaxis base: htx task <id-corto> --<param> <valor>
 
 > **Regla de oro**: bash directo (`grep`, `find`, `cat`, `wc`) solo está permitido cuando no existe una capacidad higpertext equivalente.
 
+## Cuándo usar un Workflow (CRÍTICO)
+
+**Usa `htx workflow run` cuando la situación encadena múltiples capacidades.** Los workflows garantizan el orden correcto y no fallan silenciosamente entre pasos.
+
+| Situación | Workflow a invocar |
+|-----------|-------------------|
+| Actualización y Sincronización Automática de Documentación | `workflow.docs-update` |
+| Sincronización de Lineamientos de Gobernanza | `workflow.guidelines-sync` |
+
+> Si dudas entre capacidad individual y workflow: **usa the workflow**.
+
+---
+
 ## Reglas de reducción de tokens de salida (CRÍTICO)
 
 Para maximizar la velocidad y ahorrar tokens, DEBES seguir estas reglas estrictamente:
@@ -603,7 +627,6 @@ Las reglas detalladas se cargan bajo demanda para optimizar el contexto.
 - `common.memory-manager`
 - `common.truth-keeper`
 - `common.file-map`
-- `common.docs-sync`
 - `common.session-start`
 - `common.session-clean`
 - `common.hook-health`
@@ -613,17 +636,11 @@ Las reglas detalladas se cargan bajo demanda para optimizar el contexto.
 - `common.subagent-executor`
 - `common.error-context-locator`
 - `common.search-router`
-- `common.env-catalog`
-- `common.env-runner`
-- `common.env-status`
-- `common.env-logs`
-- `common.env-stop`
-- `common.env-clean`
-- `common.env-template`
 - `common.project-explainer`
 - `git.ls-files`
 - `common.task-decomposer`
 - `common.drift-check`
+- `common.investigation-report`
 
 **Comandos para gestionar reglas:**
 - Listar disponibles: `htx task list-rules`
@@ -633,6 +650,28 @@ Las reglas detalladas se cargan bajo demanda para optimizar el contexto.
 
 > IMPORTANTE: Ejecuta `list-rules` o `load-rules` antes de invocar cualquier
 > capacidad si necesitas recordar sus parámetros exactos.
+
+---
+
+## Flujos de Trabajo Disponibles (Playbooks)
+
+Los parámetros y cadenas de ejecución se cargan bajo demanda.
+
+| Workflow ID | Nombre |
+|-------------|--------|
+| `workflow.docs-update` | Actualización y Sincronización Automática de Documentación |
+| `workflow.guidelines-sync` | Sincronización de Lineamientos de Gobernanza |
+
+**Reglas de uso (CRÍTICO):**
+- Usa un workflow cuando la tarea encadena 2 o más capacidades en secuencia.
+- Usa un workflow cuando el orden de ejecución importa y un fallo debe abortar el resto.
+- Usa capacidades individuales solo si la tarea es atómica y no depende de otras.
+- Ante duda entre capacidad y workflow: **usa el workflow**.
+
+**Comandos para cargar detalles:**
+- Listar workflows: `htx task list-rules --type workflows`
+- Cargar al contexto: `htx task load-rules --workflows "<id1>,<id2>"`
+- Cargar todos: `htx task load-rules --workflows all`
 
 ---
 
