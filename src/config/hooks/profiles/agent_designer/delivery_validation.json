@@ -1,0 +1,9 @@
+{
+  "id": "agent_designer.delivery_validation",
+  "event": "PostToolUse",
+  "matcher": "Bash|higpertext_task",
+  "script": "src/hooks/profiles/agent_designer/delivery_validation.py",
+  "timeout": 10,
+  "priority": 10,
+  "description": "Recuerda validar el agente después de generar scaffolding o modificar su perfil."
+}
