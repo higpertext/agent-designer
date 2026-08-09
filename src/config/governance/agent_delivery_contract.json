@@ -1,0 +1,23 @@
+{
+  "id": "agent_designer.delivery_contract",
+  "version": "1.0.0",
+  "scope": "agent_designer",
+  "description": "Contrato local que define la evidencia mínima para entregar un agente creado por agent-designer.",
+  "required_evidence": [
+    "Perfil objetivo existente, JSON válido y con governance_access booleano.",
+    "Launcher htx.py, environment.json, hooks_config.json y semantic_graph.md presentes.",
+    "Capabilities, skills, subagentes y hooks referenciados verificables.",
+    "Reporte .higpertext/reports/agent_delivery.json con passed: true.",
+    "Pruebas aplicables y validación del perfil registradas en el reporte."
+  ],
+  "prohibitions": [
+    "Declarar [SUCCESS] sin reporte de entrega aprobado.",
+    "Modificar manualmente .higpertext/ para simular evidencia.",
+    "Otorgar governance_access sin requerimiento explícito de auditoría o compliance."
+  ],
+  "enforcement": {
+    "capability": "agent_designer.verify-delivery",
+    "evidence_path": ".higpertext/reports/agent_delivery.json",
+    "session_end_environment_variable": "HIGPERTEXT_DELIVERY_TARGET"
+  }
+}

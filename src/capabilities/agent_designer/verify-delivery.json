@@ -1,0 +1,24 @@
+{
+  "id": "agent_designer.verify-delivery",
+  "version": "1.0.0",
+  "name": "Agent Delivery Verifier",
+  "description": "Verifica artefactos, perfil y evidencia de un agente generado, y escribe un reporte de entrega auditable.",
+  "entrypoint": ".higpertext/capabilities/agent_designer/scripts/verify_delivery.py",
+  "language": "python",
+  "parameters": [
+    {"name": "target", "description": "Ruta del agente generado que se desea verificar.", "required": true},
+    {"name": "profile", "description": "Perfil objetivo; si se omite, se infiere cuando existe uno no reservado.", "required": false, "default": ""}
+  ],
+  "contract": {
+    "rules": [
+      "Debe fallar con [ERROR] si --target no existe o no contiene la estructura de un agente higpertext.",
+      "Debe validar el JSON del perfil objetivo y que governance_access sea booleano.",
+      "Debe comprobar htx.py, environment.json, hooks_config.json y semantic_graph.md.",
+      "Debe escribir .higpertext/reports/agent_delivery.json con passed, checks y timestamp.",
+      "Debe emitir [SUCCESS] solo cuando todos los checks requeridos aprueben.",
+      "Nunca debe exponer secretos ni escribir fuera del agente destino."
+    ],
+    "success_pattern": "\\[SUCCESS\\]"
+  },
+  "examples": [{"description": "Verificar un agente recién creado", "command": "htx task agent_designer.verify-delivery --target ../mi-agente --profile mi_perfil"}]
+}

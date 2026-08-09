@@ -39,3 +39,13 @@ python -m pytest tests/test_agent_designer_harness.py
 ```
 
 El resultado de una entrega solo es válido cuando las comprobaciones del protocolo del perfil y este arnés terminan correctamente.
+
+Al terminar un agente, genera la evidencia obligatoria:
+
+```bash
+htx task agent_designer.verify-delivery --target <ruta-del-agente> --profile <perfil>
+```
+
+El reporte queda en `<ruta-del-agente>/.higpertext/reports/agent_delivery.json`. Si se declara `HIGPERTEXT_DELIVERY_TARGET`, el hook de cierre de Claude bloquea la sesión hasta que dicho reporte exista y apruebe.
+
+Para pruebas de ciclo de vida y conversaciones reales con `claude -p`, consulta el [marco reutilizable de evaluación E2E](docs/e2e-evaluation-framework.md).

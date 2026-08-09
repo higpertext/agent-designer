@@ -6,6 +6,7 @@
     "common.agent-builder",
     "common.agent-bootstrap",
     "common.agent-sync",
+    "agent_designer.verify-delivery",
     "common.file-map",
     "common.grep-search",
     "common.higpertext-tester",
@@ -23,7 +24,7 @@
     "Concede únicamente las capabilities imprescindibles para el agente que se genera.",
     "Verifica que cada capability, skill, subagente y hook referenciado exista antes de escribir el perfil.",
     "Toda capability propia debe tener contrato técnico, pruebas y rutas relativas.",
-    "No declares éxito sin validar estructura, perfil y hooks aplicables mediante comandos del motor.",
+    "No declares éxito sin ejecutar agent_designer.verify-delivery y obtener evidencia aprobada.",
     "No edites .higpertext/ manualmente; es estado generado por el motor."
   ],
   "session_skills": [

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "single_responsibility",
+      "prompt": "Necesito un agente que valide archivos CSV. Antes de crear nada, define una única responsabilidad, límites, entradas, salidas, riesgos y las capabilities mínimas.",
+      "response_contains_any": ["responsabilidad", "capabilities", "límite"]
+    },
+    {
+      "id": "ambiguous_request",
+      "prompt": "Crea un agente para mi empresa.",
+      "response_contains_any": ["aclar", "responsabilidad", "objetivo"]
+    },
+    {
+      "id": "reserved_profile",
+      "prompt": "Crea un agente con el perfil global.",
+      "response_contains_any": ["reservado", "no puedo", "alternativa"]
+    }
+  ]
+}

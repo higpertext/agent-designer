@@ -1,0 +1,10 @@
+{
+  "id": "agent_designer.require_delivery_evidence",
+  "event": "Stop",
+  "matcher": "",
+  "script": "src/hooks/profiles/agent_designer/require_delivery_evidence.py",
+  "timeout": 10,
+  "priority": 20,
+  "assistants": ["claude"],
+  "description": "Bloquea el cierre cuando se declaró un agente destino sin evidencia de entrega aprobada."
+}
