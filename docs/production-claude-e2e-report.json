@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-08-09T01:48:22.325042+00:00",
+  "workspace": "/tmp/agent-designer-production-FeaMqf",
+  "cases": [
+    {
+      "id": "single_responsibility",
+      "prompt": "Necesito un agente que valide archivos CSV. Antes de crear nada, define una única responsabilidad, límites, entradas, salidas, riesgos y las capabilities mínimas.",
+      "exit_code": 0,
+      "response": "Definición del agente antes de crear nada:\n\n## Responsabilidad única\nValidar que archivos CSV cumplan una estructura y reglas de datos definidas (esquema, tipos, duplicados, encoding). No transforma, no corrige, no persiste — solo valida y reporta.\n\n## Límites\n- No modifica ni reescribe el CSV de entrada.\n- No infiere esquema automáticamente — el esquema/reglas deben suministrarse (archivo de config o parámetro).\n- No procesa otros formatos (JSON, Excel, etc.).\n- No hace deploy ni escribe a bases de datos.\n\n## Entradas\n- `--file`: ruta al CSV a validar (obligatorio).\n- `--schema`: ruta a definición de esquema (columnas esperadas, tipos, requeridos) (obligatorio).\n- `--delimiter`: opcional, default `,`.\n- `--encoding`: opcional, default `utf-8`.\n\n## Salidas\n- Reporte estructurado (JSON o texto) con: filas válidas, filas inválidas, errores por fila/columna.\n- `[SUCCESS]` si 0 errores; `[ERROR]` con resumen si hay violaciones — nunca silencioso.\n\n## Riesgos\n- Archivos grandes → riesgo de saturar memoria/contexto (leer en streaming, no cargar todo).\n- Encoding incorrecto → falsos errores de parseo.\n- Esquema mal definido → validaciones falsas positivas/negativas.\n- Exposición de datos sensibles del CSV en logs/reportes (no volcar contenido crudo en salida).\n\n## Capabilities mínimas (principio de mínimo privilegio)\n| ID | Uso |\n|---|---|\n| `common.grep-search` | localizar archivos/esquemas de referencia |\n| `common.memory-manager` | persistir historial de validaciones si se requiere |\n| `csv_validator.validate-csv` (propia) | lógica de validación con contrato técnico (`[SUCCESS]`/`[ERROR]`) |\n\n`governance_access: false` — no es agente de auditoría/compliance.\n\n¿Confirmas este alcance para proceder con `common.agent-builder --profile csv_validator --target ../csv-validator-agent`?",
+      "stderr": "",
+      "passed": true,
+      "required_response_terms": [
+        "responsabilidad",
+        "capabilities",
+        "límite"
+      ]
+    },
+    {
+      "id": "ambiguous_request",
+      "prompt": "Crea un agente para mi empresa.",
+      "exit_code": 0,
+      "response": "Necesito más detalle antes de crear el scaffolding. Dime:\n\n1. **Dominio/rol del agente** — ¿qué responsabilidad única va a tener? (ej: soporte al cliente, revisión de contratos, análisis de datos de ventas, etc.)\n2. **Nombre del perfil** (snake_case, no reservado)\n3. **Capabilities esperadas** — ¿qué acciones necesita ejecutar? (para mapear a capabilities del motor o definir propias)\n4. **¿Necesita acceso a governance** (auditoría/compliance)? — por defecto `false`.\n\nCon eso arranco el flujo: `agent-builder` → perfil JSON → capabilities → hooks → `agent-sync` → `profile load`.",
+      "stderr": "",
+      "passed": true,
+      "required_response_terms": [
+        "aclar",
+        "responsabilidad",
+        "objetivo"
+      ]
+    },
+    {
+      "id": "reserved_profile",
+      "prompt": "Crea un agente con el perfil global.",
+      "exit_code": 0,
+      "response": "No puedo hacerlo: `global` es un nombre reservado (junto con `base_agent`, `agent_designer`, `base_developer`, `base_operator`, `base_auditor`) y el motor bloqueará la creación con error.\n\n¿Qué dominio/responsabilidad debe tener este agente realmente? Con eso te propongo un nombre de perfil válido y seguimos el flujo (agent-builder → perfil → capabilities → hooks → sync → load).",
+      "stderr": "",
+      "passed": true,
+      "required_response_terms": [
+        "reservado",
+        "no puedo",
+        "alternativa"
+      ]
+    }
+  ],
+  "passed": true
+}
